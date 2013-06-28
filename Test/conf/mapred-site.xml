@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Do not modify this file directly.  Instead, copy entries that you -->
+<!-- wish to modify from this file into mapred-site.xml and change them -->
+<!-- there.  If mapred-site.xml does not already exist, create it.      -->
+
+<configuration>
+
+<!--         base config   -->
+<property>
+  <name>mapred.job.tracker</name>
+  <value></value>
+</property>
+
+
+<property>
+  <name>mapred.local.dir</name>
+  <value>/opt/hadoopdata/mapred/local</value>
+</property>
+
+
+<property>
+  <name>mapred.map.tasks</name>
+  <value>1</value>
+</property>
+
+<property>
+  <name>mapred.reduce.tasks</name>
+  <value>1</value>
+</property>
+
+<property>
+  <name>mapred.tasktracker.map.tasks.maximum</name>
+  <value>2</value>
+</property>
+
+<property>
+  <name>mapred.tasktracker.reduce.tasks.maximum</name>
+  <value>2</value>
+</property>
+
+
+<property>
+  <name>mapred.child.java.opts</name>
+  <value>-Xmx1024m</value>
+ </property>
+
+<property>
+  <name>mapred.child.env</name>
+  <value></value>
+  <description>User added environment variables for the task tracker child
+  processes. Example :
+  1) A=foo  This will set the env variable A to foo
+  2) B=$B:c This is inherit tasktracker's B env variable.
+  </description>
+</property>
+
+
+<!-- i/o properties  config-->
+
+<property>
+  <name>io.sort.factor</name>
+  <value>100</value>
+  <description>The number of streams to merge at once while sorting
+  files.  This determines the number of open file handles.</description>
+</property>
+
+<property>
+  <name>io.sort.mb</name>
+  <value>100</value>
+  <description>The total amount of buffer memory to use while sorting 
+  files, in megabytes.  By default, gives each merge stream 1MB, which
+  should minimize seeks.</description>
+</property>
+
+<property>
+  <name>io.sort.record.percent</name>
+  <value>0.05</value>
+  <description>The percentage of io.sort.mb dedicated to tracking record
+  boundaries. Let this value be r, io.sort.mb be x. The maximum number
+  of records collected before the collection thread must block is equal
+  to (r * x) / 4</description>
+</property>
+
+<property>
+  <name>io.sort.spill.percent</name>
+  <value>0.80</value>
+  <description>The soft limit in either the buffer or record collection
+  buffers. Once reached, a thread will begin to spill the contents to disk
+  in the background. Note that this does not imply any chunking of data to
+  the spill. A value less than 0.5 is not recommended.</description>
+</property>
+
+
+<!-- kerberos config -->
+<!-- JobTracker security configs -->
+<property>
+  <name>mapreduce.jobtracker.kerberos.principal</name>
+  <value>hadoop/_HOST@hdfs.server</value>
+</property>
+<property>
+  <name>mapreduce.jobtracker.kerberos.https.principal</name>
+  <value>host/_HOST@hdfs.server</value>
+</property>
+<property>
+  <name>mapreduce.jobtracker.keytab.file</name>
+  <value>/opt/keys/hadoop.keytab</value> 
+</property>
+ 
+<!-- TaskTracker security configs -->
+<property>
+  <name>mapreduce.tasktracker.kerberos.principal</name>
+  <value>hadoop/_HOST@hdfs.server</value>
+</property>
+<property>
+  <name>mapreduce.tasktracker.kerberos.https.principal</name>
+  <value>host/_HOST@hdfs.server</value>
+</property>
+<property>
+  <name>mapreduce.tasktracker.keytab.file</name>
+  <value>/opt/keys/hadoop.keytab</value> <!-- path to the MapReduce keytab -->
+</property>
+ 
+<!-- TaskController settings -->
+<property>
+  <name>mapred.task.tracker.task-controller</name>
+  <value>org.apache.hadoop.mapred.DefaultTaskController</value>
+</property>
+<property>
+  <name>mapreduce.tasktracker.group</name>
+  <value>hadoop</value>
+</property>
+ 
+</configuration>

@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Do not modify this file directly. Instead, copy entries that you -->
+<!-- wish to modify from this file into core-site.xml and change them -->
+<!-- there. If core-site.xml does not already exist, create it. -->
+
+<configuration>
+
+	<!--- global properties -->
+
+	<property>
+		<name>fs.default.name</name>
+		<value>hdfs://c17.hadoop.index.b28.youku:9000</value>
+	</property>
+
+
+	<property>
+		<name>hadoop.tmp.dir</name>
+		<value>/opt/hadoopdata</value>
+		<description>A base for other temporary directories.</description>
+	</property>
+
+	<property>
+		<name>hadoop.native.lib</name>
+		<value>true</value>
+		<description>Should native hadoop libraries, if present, be used.
+		</description>
+	</property>
+
+
+	<property>
+		<name>hadoop.security.group.mapping</name>
+		<value>org.apache.hadoop.security.ShellBasedUnixGroupsMapping</value>
+		<description>Class for user to group mapping (get groups for a given
+			user)
+		</description>
+	</property>
+
+	<property>
+		<name>hadoop.security.authorization</name>
+		<value>true</value>
+		<description>Is service-level authorization enabled?</description>
+	</property>
+
+	<property>
+		<name>hadoop.security.authentication</name>
+		<value>kerberos</value>
+		<description>Possible values are simple (no authentication), and
+			kerberos
+		</description>
+	</property>
+
+	<property>
+		<name>hadoop.security.token.service.use_ip</name>
+		<value>true</value>
+		<description>Controls whether tokens always use IP addresses. DNS
+			changes
+			will not be detected if this option is enabled. Existing
+			client
+			connections
+			that break will always reconnect to the IP of the
+			original host. New
+			clients
+			will connect to the host's new IP but fail
+			to locate a token. Disabling
+			this option will allow existing and new
+			clients to detect an IP
+			change and
+			continue to locate the new host's
+			token.
+		</description>
+	</property>
+
+	<!-- <property> <name>hadoop.security.service.user.name.key</name> <value></value> 
+		<description>Name of the kerberos principal of the user that owns a given 
+		service daemon </description> </property> -->
+
+	<!--- logging properties -->
+
+	<property>
+		<name>hadoop.logfile.size</name>
+		<value>10000000</value>
+		<description>The max size of each log file</description>
+	</property>
+
+	<property>
+		<name>hadoop.logfile.count</name>
+		<value>10</value>
+		<description>The max number of log files</description>
+	</property>
+
+	<!-- i/o properties -->
+
+	<property>
+		<name>io.compression.codecs</name>
+		<value>org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.BZip2Codec,org.apache.hadoop.io.compress.SnappyCodec
+		</value>
+		<description>A list of the compression codec classes that can be used
+			for compression/decompression.
+		</description>
+	</property>
+
+	<property>
+		<name>io.serializations</name>
+		<value>org.apache.hadoop.io.serializer.WritableSerialization</value>
+		<description>A list of serialization classes that can be used for
+			obtaining serializers and deserializers.
+		</description>
+	</property>
+
+	<!-- file system properties -->
+
+
+	<property>
+		<name>fs.file.impl</name>
+		<value>org.apache.hadoop.fs.LocalFileSystem</value>
+		<description>The FileSystem for file: uris.</description>
+	</property>
+
+	<property>
+		<name>fs.hdfs.impl</name>
+		<value>org.apache.hadoop.hdfs.DistributedFileSystem</value>
+		<description>The FileSystem for hdfs: uris.</description>
+	</property>
+
+
+
+	<!-- Web Interface Configuration -->
+
+	<property>
+		<name>webinterface.private.actions</name>
+		<value>true</value>
+		<description> If set to true, the web interfaces of JT and NN may
+			contain
+			actions, such as kill job, delete file, etc., that should
+			not
+			be exposed to public. Enable this option if the interfaces
+			are only
+			reachable by those who have the right authorization.
+		</description>
+	</property>
+
+
+
+
+	<!-- HTTP web-consoles Authentication -->
+	<property>
+		<name>hadoop.http.filter.initializers</name>
+		<value>org.apache.hadoop.security.AuthenticationFilterInitializer
+		</value>
+	</property>
+
+	<property>
+		<name>hadoop.http.authentication.type</name>
+		<value>simple</value>
+	</property>
+
+	<property>
+		<name>hadoop.http.authentication.token.validity</name>
+		<value>36000</value>
+	</property>
+
+	<property>
+		<name>hadoop.http.authentication.signature.secret</name>
+		<value></value>
+	</property>
+
+
+	<property>
+		<name>hadoop.http.authentication.cookie.domain</name>
+		<value>c17.hadoop.index.b28.youku</value>
+	</property>
+
+
+	<property>
+		<name>hadoop.http.authentication.cookie.path</name>
+		<value>/opt/hadoop/cookie</value>
+	</property>
+	<property>
+		<name>hadoop.http.authentication.simple.anonymous.allowed</name>
+		<value>false</value>
+	</property>
+
+	<property>
+		<name>hadoop.http.authentication.kerberos.principal</name>
+		<value>http/c17.hadoop.index.b28.youku@hdfs.server</value>
+	</property>
+
+	<property>
+		<name>hadoop.http.authentication.kerberos.keytab</name>
+		<value>/opt/keys/http.keytab</value>
+	</property>
+</configuration>
+
+
+
